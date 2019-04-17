@@ -1,6 +1,9 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const HappyPack = require('happypack');
+const os = require('os');
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const path = require('path');
 module.exports = {
     // webpack4中 entry和output可以没有
@@ -18,9 +21,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"//使用babel-loader来转换js文件
-                }
+                loader: 'HappyPack/loader?id=jsHappy',//使用happypack
             },
             {
                 test: /\.html$/,
@@ -57,14 +58,25 @@ module.exports = {
         ]
     },
     plugins: [
-        // 编译输出文件前，删除旧文件，当利用文件hash值输出时，可以利用改插件删除原有文件
+        // 编译输出文件前，删除旧文件，当利用文件hash值输出时，可以利用该插件删除原有文件
         new CleanWebpackPlugin(['dist']),
         // 重构入口html，动态添加<link>和<script>，在以hash命名的文件上非常有用，因为每次编译都会改变<link>和<script>标签文件名字
         new HtmlWebPackPlugin({
             template: './index.html',
-        })
+        }),
+        new HappyPack({
+            id: 'jsHappy',
+            verbose: false,
+            threadPool: happyThreadPool,
+            loaders: [{
+                path: 'babel-loader',// 使用babel将es6转换成es5
+                query: {
+                    cacheDirectory: './node_modules/.webpack_cache',
+                },
+            }],
+        }),
     ],
     externals: {
-        jquery: 'jQuery', // 当由页面自主引用jQuery（通常为了cdn加速）时可以在js文件中用const $ = import('jQuery')来代替 const $ = window.jQuery
+        jquery: 'jQuery', // 当由页面自主引用jQuery时（通常为了cdn加速）可以在js文件中用const $ = import('jQuery')来代替 const $ = window.jQuery
     },
 };

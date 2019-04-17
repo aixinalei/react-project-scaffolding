@@ -1,0 +1,1 @@
+export const NAME = 'HOMEPAGE'; // 防止大型项目起action名时发生冲突
