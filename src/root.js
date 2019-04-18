@@ -1,12 +1,12 @@
 import React from 'react';
-import HelloWorld from './homepage/component/helloWold';
+import Homepage from './homepage/component/main';
 import { Route, withRouter } from 'react-router-dom';
 class Root extends React.Component {
-    // 此处是可以根据需要添加不同的
+    // 根据不同的大功能模块集成进不同的组件
     render() {
         return (
             <div>
-                <Route path='/homepage' component={HelloWorld} />
+                <Route path='/homepage' component={Homepage} />
             </div>
         )
     }
