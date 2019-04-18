@@ -5,6 +5,8 @@ const HappyPack = require('happypack');
 const os = require('os');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 module.exports = {
     // webpack4中 entry和output可以没有
     entry: './src/index.js',
@@ -37,11 +39,21 @@ module.exports = {
                     'style-loader',// style-loader能够在需要载入的html中创建一个<style></style>标签，标签里的内容就是CSS内容。
                     {
                         loader: 'css-loader',//css-loader是允许在js中import一个css文件，会将css文件当成一个模块引入到js文件中。
-                        options: {
-                            modules: true,// 启用 css-modules模式 简单来说在样式表文件中可以使用:local(.className)、：global（.className）的方式来标明该样式的作用域
-                        }
                     }
                 ]
+            },
+            {
+                test: /\.less$/,
+                use: [{
+                    loader: 'style-loader'
+                }, {
+                    loader: 'css-loader',
+                }, {
+                    loader: 'less-loader',
+                    options: {
+                        javascriptEnabled: true
+                    }
+                }]
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
@@ -60,6 +72,10 @@ module.exports = {
     plugins: [
         // 编译输出文件前，删除旧文件，当利用文件hash值输出时，可以利用该插件删除原有文件
         new CleanWebpackPlugin(['dist']),
+        // 将文件原封不动拷贝到output目录下。
+        new CopyWebpackPlugin([{
+            from: 'globalConfig.js',
+        }]),
         // 重构入口html，动态添加<link>和<script>，在以hash命名的文件上非常有用，因为每次编译都会改变<link>和<script>标签文件名字
         new HtmlWebPackPlugin({
             template: './index.html',
