@@ -23,7 +23,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'HappyPack/loader?id=jsHappy',//使用happypack
+                loader: 'HappyPack/loader?id=jsHappy',//使用happypack 加快打包速度
             },
             {
                 test: /\.html$/,
@@ -35,15 +35,35 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                exclude: [/node_modules/],
                 use: [
                     'style-loader',// style-loader能够在需要载入的html中创建一个<style></style>标签，标签里的内容就是CSS内容。
                     {
                         loader: 'css-loader',//css-loader是允许在js中import一个css文件，会将css文件当成一个模块引入到js文件中。
+                        options: {
+                            modules: true,// 启用 css-modules模式 简单来说在样式表文件中可以使用:local(.className)、：global（.className）的方式来标明该样式的作用域
+                        }
+
                     }
                 ]
             },
             {
                 test: /\.less$/,
+                exclude: [/node_modules/],// 只对自己编辑的文件开启modules antd不支持css-loader开启modules模式
+                use: [{
+                    loader: 'style-loader'
+                }, {
+                    loader: 'css-loader',
+                    options: {
+                        modules: true,
+                    }
+                }, {
+                    loader: 'less-loader',
+                }]
+            },
+            {
+                test: /\.less$/,
+                include: [/node_modules|antd/],//单独为antd写的lessloader
                 use: [{
                     loader: 'style-loader'
                 }, {
@@ -51,7 +71,7 @@ module.exports = {
                 }, {
                     loader: 'less-loader',
                     options: {
-                        javascriptEnabled: true
+                        javascriptEnabled: true // 主要为了解决antd使用less打包样式less报错的问题
                     }
                 }]
             },

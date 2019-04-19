@@ -6,26 +6,40 @@ const {
 } = Layout;
 import HeaderComponet from './pageHeader/main.js';
 import PageMenu from './pageMenu/main.js';
-
-class HelloWorld extends React.Component {
+import { createStructuredSelector } from 'reselect';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getMenuCollapsed } from '../redux/selectors';
+import actions from '../redux/actions';
+class Homepage extends React.Component {
     render() {
         return (
             <Layout>
-                <Sider>
+                <Sider
+                    // collapsible
+                    collapsed={this.props.getMenuCollapsed}>
                     <PageMenu></PageMenu>
                 </Sider>
                 <Layout>
-                    <Header>
+                    <Header style={{ background: '#fff', padding: 0 }}>
                         <HeaderComponet />
                     </Header>
                     <Content>
-                        <Button type="primary">Primary</Button>
+
                     </Content>
-                    <Footer>Footer</Footer>
+                    <Footer>©2019 Create by Censoft</Footer>
                 </Layout>
             </Layout>
         )
     }
 }
 
-export default HelloWorld;
+const mapStateToProps = createStructuredSelector({
+    getMenuCollapsed,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    toggleCollapsed: actions.toggleCollapsed,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

@@ -1,27 +1,48 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
-
-class pageHeader extends React.Component {
+import { createStructuredSelector } from 'reselect';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getMenuCollapsed } from '../../redux/selectors';
+import css from './main.less';
+class pageMenu extends React.Component {
     render() {
         return (
-            <div>
-                <div className="logo" />
+            <div className={css.mainClass}>
+                <div className={css.logo} />
                 <Menu
                     defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
+                    inlineCollapsed={this.props.getMenuCollapsed}
                     mode="inline"
                     theme="dark"
                 >
-                    <Menu.Item key="1">Option 9</Menu.Item>
-                    <Menu.Item key="2">Option 10</Menu.Item>
-                    <Menu.Item key="3">Option 11</Menu.Item>
-                    <Menu.Item key="4">Option 12</Menu.Item>
+                    <Menu.Item key="1">
+                        <Icon type="appstore" />
+                        <span>项目集成</span>
+                    </Menu.Item>
+                    <Menu.Item key="2">
+                        <Icon type="rocket" />
+                        <span>安装与启动</span>
+                    </Menu.Item>
+                    <Menu.Item key="3">
+                        <Icon type="read" />
+                        <span>简易教程</span>
+                    </Menu.Item>
+                    <Menu.Item key="4">
+                        <Icon type="star" />
+                        <span>UI模板</span>
+                    </Menu.Item>
                 </Menu>
             </div>
         )
     }
 }
 
-export default pageHeader;
+const mapStateToProps = createStructuredSelector({
+    getMenuCollapsed,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+
+}, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(pageMenu);
