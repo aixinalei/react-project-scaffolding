@@ -49,7 +49,7 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                exclude: [/node_modules/],// 只对自己编辑的文件开启modules antd不支持css-loader开启modules模式
+                exclude: [/node_modules/],// 只对自己编辑的文件开启modules
                 use: [{
                     loader: 'style-loader'
                 }, {
@@ -63,7 +63,7 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                include: [/node_modules|antd/],//单独为antd写的lessloader
+                include: [/node_modules|antd/],//单独为antd写的lessloader 因为antd不支持css-loader开启modules模式
                 use: [{
                     loader: 'style-loader'
                 }, {

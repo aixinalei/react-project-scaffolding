@@ -1,14 +1,15 @@
 import React from 'react';
-
-
+import { Route, withRouter } from 'react-router-dom';
+import installAndRun from './installAndRun/main';
+import css from './main.less';
 class pageHeader extends React.Component {
     render() {
         return (
-            <div>
-
+            <div className={css.mainClass}>
+                <Route path='/homepage/installAndRun' component={installAndRun} ></Route>
             </div>
         )
     }
 }
 
-export default pageHeader;
+export default withRouter(pageHeader);

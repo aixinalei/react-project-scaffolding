@@ -5,7 +5,18 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getMenuCollapsed } from '../../redux/selectors';
 import css from './main.less';
+// 使用withRouter 为组件提供history location match staticContext属性
+import { withRouter } from 'react-router-dom';
+
 class pageMenu extends React.Component {
+    constructor(props) {
+        super(props);
+        console.log(props)
+    }
+    changeRouter = (option) => {
+        const { key } = option;
+        this.props.history.replace(`/homepage/${key}`);
+    }
     render() {
         return (
             <div className={css.mainClass}>
@@ -15,12 +26,13 @@ class pageMenu extends React.Component {
                     inlineCollapsed={this.props.getMenuCollapsed}
                     mode="inline"
                     theme="dark"
+                    onSelect={(option) => { this.changeRouter(option) }}
                 >
                     <Menu.Item key="1">
                         <Icon type="appstore" />
                         <span>项目集成</span>
                     </Menu.Item>
-                    <Menu.Item key="2">
+                    <Menu.Item key="installAndRun">
                         <Icon type="rocket" />
                         <span>安装与启动</span>
                     </Menu.Item>
@@ -45,4 +57,4 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => bindActionCreators({
 
 }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(pageMenu);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(pageMenu));

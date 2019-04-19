@@ -6,6 +6,7 @@ const {
 } = Layout;
 import HeaderComponet from './pageHeader/main.js';
 import PageMenu from './pageMenu/main.js';
+import PageContent from './pageContent/main.js'
 import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -25,7 +26,7 @@ class Homepage extends React.Component {
                         <HeaderComponet />
                     </Header>
                     <Content>
-
+                        <PageContent />
                     </Content>
                     <Footer>©2019 Create by Censoft</Footer>
                 </Layout>
