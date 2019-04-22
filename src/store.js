@@ -3,7 +3,7 @@
  */
 
 import { applyMiddleware, combineReducers, createStore } from 'redux';
-import { createLogger } from 'redux-logger'
+import { createLogger } from 'redux-logger';
 
 // redux-promise作为redux的异步解决方案，既允许action Creator返回一个Promise对象。
 import promise from 'redux-promise';

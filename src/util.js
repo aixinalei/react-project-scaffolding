@@ -14,28 +14,28 @@ export const hash16 = () => randomize('Aa0', 16);
 
 
 export function getActionsFromType(actionTypes) {
-    const types = humps.camelizeKeys(
-        actionTypes,
-        {
-            separator: '_',
-            process(key, convert) {
-                return convert(key.toLowerCase());
-            },
-        },
+  const types = humps.camelizeKeys(
+    actionTypes,
+    {
+      separator: '_',
+      process(key, convert) {
+        return convert(key.toLowerCase());
+      },
+    },
+  );
+
+  const actions = {};
+
+  for (const key of types) {
+    actions[key] = createAction(
+      types[key],
+      params => params,
     );
+  }
 
-    const actions = {};
-
-    for (const key in types) {
-        actions[key] = createAction(
-            types[key],
-            params => params,
-        );
-    }
-
-    actions.createError = createAction(
-        'ERROR_REPORT',
-        params => params,
-    );
-    return actions;
+  actions.createError = createAction(
+    'ERROR_REPORT',
+    params => params,
+  );
+  return actions;
 }

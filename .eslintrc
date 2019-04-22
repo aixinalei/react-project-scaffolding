@@ -1,0 +1,21 @@
+{
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true
+    },
+    "rules": {
+        "linebreak-style": 0,
+        "react/jsx-filename-extension": 0,
+        "react/forbid-prop-types": 0,
+        "import/newline-after-import": 0,
+        "import/first": 0,
+        "no-restricted-syntax": 0,
+        "jsx-a11y/no-static-element-interactions": 0,
+        "import/no-extraneous-dependencies": 0,
+        "class-methods-use-this": 0,
+        "no-underscore-dangle": 0,
+        "import/prefer-default-export": 0,
+        "jsx-a11y/label-has-for": 0
+    }
+}

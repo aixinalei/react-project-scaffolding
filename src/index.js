@@ -7,11 +7,11 @@ import { HashRouter } from 'react-router-dom';
 import { store } from './store';
 
 ReactDOM.render(
-    <Provider store={store}>
-        <HashRouter>
-            <ROOT />
-        </HashRouter>
-    </Provider>
+  <Provider store={store}>
+    <HashRouter>
+      <ROOT />
+    </HashRouter>
+  </Provider>
     ,
     document.getElementById('root'),
 );
