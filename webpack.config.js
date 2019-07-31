@@ -7,7 +7,7 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = {
+module.exports = env => ({
   // webpack4中 entry和output可以没有
   entry: './src/index.js',
   output: {
@@ -23,13 +23,16 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [{
+        use: env && env.WITH_ESLINT ? [{
           loader: 'HappyPack/loader?id=jsHappy', // 使用happypack 加快打包速度
         }, {
           loader: 'eslint-loader',
           options: { fix: true },
-        }],
-
+        }] : [
+          {
+            loader: 'HappyPack/loader?id=jsHappy',
+          },
+        ],
       },
       {
         test: /\.html$/,
@@ -120,4 +123,4 @@ module.exports = {
   externals: {
     jquery: 'jQuery', // 当由页面自主引用jQuery时（通常为了cdn加速）可以在js文件中用const $ = import('jQuery')来代替 const $ = window.jQuery
   },
-};
+});
