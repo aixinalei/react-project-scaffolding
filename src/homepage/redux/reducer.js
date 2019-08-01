@@ -14,7 +14,7 @@ export default (state = initState, action) =>
         break;
       }
       case t.AJAX_ACTION_DEMO_LOAD_USERINFO: {
-        console.log(action);
+        draft.userInfo = action.payload;
         break;
       }
       default: break;

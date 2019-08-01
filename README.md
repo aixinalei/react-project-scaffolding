@@ -1,10 +1,10 @@
 React项目脚手架
 ----
-这是一个可以应用于不同场景的项目脚手架 不同分支集成有不同的功能
+这是一个可以应用于不同场景的项目脚手架 不同分支集成有不同的功能。同时也是一个非常好的react+redux入门项目，里面有非常详尽的demo与注释
 ## 项目集成
 
 ### master分支
-* webpack4+react+reactRouter4+redux+antd
+* 核心库：webpack4+react16.7+reactRouter4+redux+antd
 * 使用redux-promise+axios进行异步操作
 * 集成less、css，使用模块化处理。同时将css文件单独抽离，进行缓存优化
 * 集成HappyPack优化webpack打包速度
@@ -74,6 +74,33 @@ React项目脚手架
 
     ```
 
+* redux+ajax操作样例：
+    1. ajax.js 中写好ajax，demo：
+    ```javascript
+    export const loadUserInfo = () => new Promise((resolve) => {
+      axios.post(`${API_SERVER}/loadUserInfo`).then((res) => {
+        resolve(res);
+      });
+    });
+    ```
+    2. actions-type.js 中注册redux中 action的名字，demo：
+    ```javascript
+    export const AJAX_ACTION_DEMO_LOAD_USERINFO = `${NAME}/AJAX_ACTION_DEMO_LOAD_USERINFO`;
+    ```
+    3. actions.js 中绑定此action的ajax,demo:
+    ```javascript
+    actions.ajaxActionDemoLoadUserInfo = createAction(
+      t.AJAX_ACTION_DEMO_LOAD_USERINFO,
+      a.loadUserInfo,
+    );
+    ```
+    4. reducer中写触发actions后触发的纯函数
+    ```javascript
+      case t.AJAX_ACTION_DEMO_LOAD_USERINFO: {
+        draft.userInfo = action.payload;
+        break;
+      }
+    ```
 * eslint 检查
 
     `yarn run eslint-test`
@@ -81,3 +108,6 @@ React项目脚手架
 * 生成文件
 
      `yarn run build`
+
+### 共同维护：
+jiadonglei0070@dingtalk.com
