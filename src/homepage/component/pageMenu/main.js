@@ -11,7 +11,6 @@ import { withRouter } from 'react-router-dom';
 class pageMenu extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
   changeRouter = (option) => {
     const { key } = option;
