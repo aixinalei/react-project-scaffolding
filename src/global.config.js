@@ -1,3 +1,3 @@
 export default {
-  apiServer: '',
+  apiServer: 'http://localhost:8080',
 };
