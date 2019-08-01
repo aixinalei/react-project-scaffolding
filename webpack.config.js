@@ -1,6 +1,6 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HappyPack = require('happypack');
 const os = require('os');
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
@@ -18,6 +18,7 @@ module.exports = env => ({
   devServer: {
     contentBase: './dist',
   },
+  devtool: 'source-map', // 配置webpack自动生成source-map文件,方便浏览器调试bug,不过加上后拖慢打包速度
   module: {
     rules: [
       {
@@ -59,11 +60,12 @@ module.exports = env => ({
         test: /\.less$/,
         exclude: [/node_modules/], // 只对自己编辑的文件开启modules
         use: [{
-          loader: 'style-loader',
+          loader: MiniCssExtractPlugin.loader, // 替代 style-loader 将 css从文件中抽出成一个单独的文件
         }, {
           loader: 'css-loader',
           options: {
             modules: true,
+            context: __dirname,   // 不同目录下相同名称的less文件生成不同的css类名
           },
         }, {
           loader: 'less-loader',
@@ -98,6 +100,9 @@ module.exports = env => ({
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
     // 编译输出文件前，删除旧文件，当利用文件hash值输出时，可以利用该插件删除原有文件
     new CleanWebpackPlugin(['dist']),
     // 将文件原封不动拷贝到output目录下。

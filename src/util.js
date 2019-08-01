@@ -26,7 +26,7 @@ export function getActionsFromType(actionTypes) {
 
   const actions = {};
 
-  for (const key of types) {
+  for (const key in types) {
     actions[key] = createAction(
       types[key],
       params => params,

@@ -15,7 +15,7 @@ import actions from '../redux/actions';
 class Homepage extends React.Component {
   render() {
     return (
-      <Layout>
+      <Layout style={{ height: '100%' }}>
         <Sider
           // collapsible
           collapsed={this.props.getMenuCollapsed}
