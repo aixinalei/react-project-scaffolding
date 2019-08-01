@@ -12,7 +12,10 @@ export const hash8 = () => randomize('Aa0', 8);
  */
 export const hash16 = () => randomize('Aa0', 16);
 
-
+/**
+ * @function
+ * 统一action
+ */
 export function getActionsFromType(actionTypes) {
   const types = humps.camelizeKeys(
     actionTypes,

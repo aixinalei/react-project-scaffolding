@@ -9,6 +9,7 @@ import css from './main.less';
 class pageHeader extends React.Component {
   constructor(props) {
     super(props);
+    props.getUserInfo();
   }
   // js的类中正常不允许使用箭头函数，通常为了绑定this对象需要在constructor中使用bind函数进行绑定，为了简化操作流程，使用@babel/plugin-proposal-class-properties插件进行解决
   toggle = () => {
@@ -34,6 +35,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   toggleCollapsed: actions.toggleCollapsed,
+  getUserInfo: actions.ajaxActionDemoLoadUserInfo,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(pageHeader);

@@ -1,6 +1,6 @@
 import React from 'react';
 // import css from './helloword.css'
-import { Layout, Button } from 'antd';
+import { Layout } from 'antd';
 const {
   Header, Footer, Sider, Content,
 } = Layout;

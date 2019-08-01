@@ -46,9 +46,11 @@
   "dependencies": {
     "@loadable/component": "^5.7.0",
     "antd": "^3.16.3",
+    "axios": "^0.19.0",
     "babel-plugin-import": "^1.11.0",
     "humps": "^2.0.1",
     "immer": "^2.1.5",
+    "c": "^1.0.1-beta3",
     "prop-types": "^15.7.2",
     "randomatic": "^3.1.1",
     "react": "^16.7.0",

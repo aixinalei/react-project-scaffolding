@@ -13,9 +13,11 @@ export default (state = initState, action) =>
         draft.menuCollapsed = !draft.menuCollapsed;
         break;
       }
-      default: {
-
+      case t.AJAX_ACTION_DEMO_LOAD_USERINFO: {
+        console.log(action);
+        break;
       }
+      default: break;
     }
     return draft;
   });
