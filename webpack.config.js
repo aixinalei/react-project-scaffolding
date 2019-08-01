@@ -105,10 +105,6 @@ module.exports = env => ({
     }),
     // 编译输出文件前，删除旧文件，当利用文件hash值输出时，可以利用该插件删除原有文件
     new CleanWebpackPlugin(['dist']),
-    // 将文件原封不动拷贝到output目录下。
-    new CopyWebpackPlugin([{
-      from: 'globalConfig.js',
-    }]),
     // 重构入口html，动态添加<link>和<script>，在以hash命名的文件上非常有用，因为每次编译都会改变<link>和<script>标签文件名字
     new HtmlWebPackPlugin({
       template: './index.html',
