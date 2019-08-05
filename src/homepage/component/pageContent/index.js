@@ -1,8 +1,9 @@
 import React from 'react';
 import { Route, withRouter } from 'react-router-dom';
-import installAndRun from './installAndRun/main';
-import css from './main.less';
-import projectIntegration from './projectIntegration/main';
+import installAndRun from './installAndRun';
+import css from './index.less';
+import projectIntegration from './projectIntegration';
+
 class pageHeader extends React.Component {
   render() {
     return (

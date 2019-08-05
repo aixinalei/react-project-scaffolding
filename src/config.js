@@ -1,4 +1,4 @@
-import globalConfig from './global.config.js';
+import globalConfig from './global.config';
 const getLocalConfig = (path) => {
   const context = require.context('./', false, /\**config.js$/);
   if (context.keys().includes(path)) {
@@ -8,7 +8,6 @@ const getLocalConfig = (path) => {
       console.log(`应用本地配置(${path})：`);
       for (const key in config) {
         /* eslint-disable-next-line */
-        console.log(`   ${key} = ${config[key]}`);
       }
     }
     return config;

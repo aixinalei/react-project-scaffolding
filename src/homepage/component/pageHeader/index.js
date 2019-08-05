@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getMenuCollapsed } from '../../redux/selectors';
 import actions from '../../redux/actions';
-import css from './main.less';
+import css from './index.less';
 class pageHeader extends React.Component {
   constructor(props) {
     super(props);

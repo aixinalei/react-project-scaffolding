@@ -4,7 +4,6 @@ import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getMenuCollapsed } from '../../redux/selectors';
-import css from './main.less';
 // 使用withRouter 为组件提供history location match staticContext属性
 import { withRouter } from 'react-router-dom';
 
@@ -18,8 +17,16 @@ class pageMenu extends React.Component {
   }
   render() {
     return (
-      <div className={css.mainClass}>
-        <div className={css.logo} />
+      <div >
+        <div style={{ height: '60px' }}>
+          <h1
+            style={{
+              fontWeight: 600,
+              fontSize: 20,
+              color: 'white',
+            }}
+          >公司Logo</h1>
+        </div>
         <Menu
           defaultSelectedKeys={['projectIntegration']}
           inlineCollapsed={this.props.getMenuCollapsed}
@@ -35,16 +42,8 @@ class pageMenu extends React.Component {
             <Icon type="rocket" />
             <span>安装与启动</span>
           </Menu.Item>
-          <Menu.Item key="3">
-            <Icon type="read" />
-            <span>简易教程</span>
-          </Menu.Item>
-          <Menu.Item key="4">
-            <Icon type="star" />
-            <span>UI模板</span>
-          </Menu.Item>
         </Menu>
-      </div>
+      </div >
     );
   }
 }
