@@ -28,7 +28,6 @@ class pageMenu extends React.Component {
           >公司Logo</h1>
         </div>
         <Menu
-          defaultSelectedKeys={['projectIntegration']}
           inlineCollapsed={this.props.getMenuCollapsed}
           mode="inline"
           theme="dark"
