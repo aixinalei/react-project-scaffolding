@@ -15,6 +15,7 @@ module.exports = env => ({
     chunkFilename: '[name]-[chunkhash:8].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  target: 'electron-renderer',
   devServer: {
     contentBase: './dist',
   },

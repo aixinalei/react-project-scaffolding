@@ -17,6 +17,19 @@
 
   继承所有master分支集成
 
+  目录结构
+
+  ```
+  |- nodeSrc
+  |-- createWindow.js   // 创建窗口
+  |-- ipcMainManger.js  // 主进程批量注册
+  |- src
+  |-- utils
+  |--- ipcRender.js    // 渲染进程与主进程通讯批量注册
+  |--- windowUtils.js  // 提供了一些快捷使用的窗口函数
+  |- main.js
+  ```
+
 ### Typescript分支
 使用Typescript重新构建的master分支
 
@@ -29,6 +42,10 @@
 2. 启动
 
     `yarn start` or `npm start`
+
+3. 项目编译
+
+    `yarn build`
 
 ## 使用指南
 * 后端api地址配置
