@@ -9,11 +9,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = env => ({
   // webpack4中 entry和output可以没有
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     filename: '[name].[chunkhash].js', // 打包出来的文件最好用文件的hash值来命名 防止更新后浏览器有缓存
     chunkFilename: '[name]-[chunkhash:8].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   devServer: {
     contentBase: './dist',
@@ -23,6 +26,20 @@ module.exports = env => ({
     rules: [
       {
         test: /\.js$/,
+        exclude: /node_modules/,
+        use: env && env.WITH_ESLINT ? [{
+          loader: 'HappyPack/loader?id=jsHappy', // 使用happypack 加快打包速度
+        }, {
+          loader: 'eslint-loader',
+          options: { fix: true },
+        }] : [
+          {
+            loader: 'HappyPack/loader?id=jsHappy',
+          },
+        ],
+      },
+      {
+        test: /\.ts(x?)$/,
         exclude: /node_modules/,
         use: env && env.WITH_ESLINT ? [{
           loader: 'HappyPack/loader?id=jsHappy', // 使用happypack 加快打包速度
