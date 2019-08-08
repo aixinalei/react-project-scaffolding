@@ -16,9 +16,6 @@ module.exports = env => ({
     path: path.resolve(__dirname, 'dist'),
   },
   target: 'electron-renderer',
-  devServer: {
-    contentBase: './dist',
-  },
   devtool: 'source-map', // 配置webpack自动生成source-map文件,方便浏览器调试bug,不过加上后拖慢打包速度
   module: {
     rules: [
@@ -31,10 +28,10 @@ module.exports = env => ({
           loader: 'eslint-loader',
           options: { fix: true },
         }] : [
-          {
-            loader: 'HappyPack/loader?id=jsHappy',
-          },
-        ],
+            {
+              loader: 'HappyPack/loader?id=jsHappy',
+            },
+          ],
       },
       {
         test: /\.html$/,
@@ -105,7 +102,7 @@ module.exports = env => ({
       filename: '[name].css',
     }),
     // 编译输出文件前，删除旧文件，当利用文件hash值输出时，可以利用该插件删除原有文件
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['dist', 'installer']),
     // 重构入口html，动态添加<link>和<script>，在以hash命名的文件上非常有用，因为每次编译都会改变<link>和<script>标签文件名字
     new HtmlWebPackPlugin({
       template: './index.html',

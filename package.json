@@ -6,7 +6,26 @@
   "scripts": {
     "eslint-test": "webpack --mode production --env.WITH_ESLINT",
     "build": "webpack --mode production --watch",
-    "start": "electron . --production"
+    "start": "electron . --production",
+    "installer": "webpack --mode production && electron-builder"
+  },
+  "build": {
+    "appId": "com.reactelectronDemo.id",
+    "asar": false,
+    "directories": {
+      "output": "installer"
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://192.168.4.101:9090/test/installer/"
+      }
+    ],
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "author": "dljia",
   "license": "ISC",
@@ -41,16 +60,17 @@
     "url-loader": "^1.1.2",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14"
+    "electron": "^6.0.0",
+    "antd": "^3.16.3",
+    "electron-builder": "^21.2.0"
   },
   "dependencies": {
     "@loadable/component": "^5.7.0",
-    "antd": "^3.16.3",
     "axios": "^0.19.0",
     "babel-plugin-import": "^1.11.0",
-    "electron": "^6.0.0",
     "humps": "^2.0.1",
     "immer": "^2.1.5",
+    "electron-updater": "^4.1.2",
     "mockjs": "^1.0.1-beta3",
     "prop-types": "^15.7.2",
     "randomatic": "^3.1.1",

@@ -3,7 +3,7 @@ import * as a from './ajax';
 import { createAction } from 'redux-actions';
 
 // 工具函数 节省模板性代码
-import { getActionsFromType } from '../../Utils/util';
+import { getActionsFromType } from '../../utils/util';
 const actions = getActionsFromType(t);
 
 actions.ajaxActionDemoLoadUserInfo = createAction(

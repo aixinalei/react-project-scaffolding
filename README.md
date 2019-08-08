@@ -21,6 +21,7 @@
 
   ```
   |- nodeSrc
+  |-- checkUpdate.js    // 检查更新
   |-- createWindow.js   // 创建窗口
   |-- ipcMainManger.js  // 主进程批量注册
   |- src
@@ -92,7 +93,7 @@
     ```
 
 * redux+ajax操作样例：
-    1. ajax.js 中写好ajax，demo：
+    1. ajax.js 中写ajax，demo：
     ```javascript
     export const loadUserInfo = () => new Promise((resolve) => {
       axios.post(`${API_SERVER}/loadUserInfo`).then((res) => {
@@ -100,11 +101,11 @@
       });
     });
     ```
-    2. actions-type.js 中注册redux中 action的名字，demo：
+    2. actions-type.js注册redux中action的名字，demo：
     ```javascript
     export const AJAX_ACTION_DEMO_LOAD_USERINFO = `${NAME}/AJAX_ACTION_DEMO_LOAD_USERINFO`;
     ```
-    3. actions.js 中绑定此action的ajax,demo:
+    3. actions.js中绑定此action的ajax,demo:
     ```javascript
     actions.ajaxActionDemoLoadUserInfo = createAction(
       t.AJAX_ACTION_DEMO_LOAD_USERINFO,

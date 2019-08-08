@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { getMenuCollapsed } from '../redux/selectors';
 import actions from '../redux/actions';
 class Homepage extends React.Component {
+
   render() {
     return (
       <Layout style={{ height: '100%' }}>
@@ -29,7 +30,7 @@ class Homepage extends React.Component {
           <Content>
             <PageContent />
           </Content>
-          <Footer>©2019 Create by DLjia</Footer>
+          <Footer>©2019 Create by DLjia Version=1.0.0</Footer>
         </Layout>
       </Layout>
     );
