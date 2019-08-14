@@ -75,7 +75,9 @@
 
           export default CheckUpadeWrapper(Root);
         ```
+      * 修改后台文件服务器地址
 
+        修改package.json 中build publish 下url
 ### Typescript分支
 使用Typescript重新构建的master分支
 
