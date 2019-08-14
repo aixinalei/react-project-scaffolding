@@ -1,8 +1,8 @@
 const { app } = require('electron');
 const path = require('path');
 const argv = require('yargs').argv;
-
 const { createWindow } = require('./nodeSrc/createWindow');
+const { updateHandle } = require('./nodeSrc/checkUpdate');
 // 使用map进行窗口管理
 const windowMap = new Map();
 
@@ -25,7 +25,10 @@ app.on('ready', () => {
   // 将主窗口放入windowMap中管理
   windowMap.set('main', mainWindow);
   // 检查更新
-  require('./nodeSrc/checkUpdate');
+  if (!global.shareData.argv.production) {
+    // 非开发模式下检查软件更新
+    updateHandle(mainWindow);
+  }
 });
 
 // 所有的窗口关闭时 关闭app
