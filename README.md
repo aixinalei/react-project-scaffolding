@@ -17,7 +17,7 @@
 
   继承所有master分支集成
 
-  目录结构
+  #### 目录结构
 
   ```
   |- nodeSrc
@@ -30,6 +30,51 @@
   |--- windowUtils.js  // 提供了一些快捷使用的窗口函数
   |- main.js
   ```
+
+  #### 打包及自动更新模块介绍
+
+  1. 使用[electron-builder](https://www.electron.build/)进行打包
+     打包命令为
+     ```
+     npm run installer
+     ```
+  2. 自动更新模块的使用方式
+  
+     * 主进程引入nodeSrc/checkUpdate.js,传入electron中BrwoserWindow对象，样例代码如下：
+        ```
+        app.on('ready', () => {
+          const mainWindow = createWindow({
+            width: 790,
+            height: 724,
+            webPreferences: {
+              nodeIntegration: true,
+            },
+            title: 'react-electron项目脚手架',
+          }, path.join(__dirname, 'dist/index.html'));
+          // 将主窗口放入windowMap中管理
+          windowMap.set('main', mainWindow);
+          // 检查更新
+          if (!global.shareData.argv.production) {
+            // 非开发模式下检查软件更新
+            updateHandle(mainWindow);
+          }
+        });
+        ```
+     * 渲染进程在想弹出是否更新提示处引入src/common/checkUPdateWrapper高阶组件，样例代码如下：
+        ```
+        import CheckUpadeWrapper from './common/checkUpdataWrapper';
+          class Root extends React.Component {
+            render() {
+              return (
+                <div>
+                  ...
+                </div>
+              );
+            }
+          }
+
+          export default CheckUpadeWrapper(Root);
+        ```
 
 ### Typescript分支
 使用Typescript重新构建的master分支
