@@ -6,8 +6,9 @@ import { createAction } from 'redux-actions';
 import { getActionsFromType } from '../../Utils/util';
 const actions = getActionsFromType(t);
 
-actions.ajaxActionDemoLoadUserInfo = createAction(
-  t.AJAX_ACTION_DEMO_LOAD_USERINFO,
-  a.loadUserInfo,
+actions.loadData = createAction(
+  t.LOAD_DATA,
+  a.loadData,
 );
+
 export default actions;

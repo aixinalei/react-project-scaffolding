@@ -1,3 +1,3 @@
 export default {
-  API_SERVER: 'API_SERVER',
+  API_SERVER: 'http://api.block.censoft.com.cn',
 };

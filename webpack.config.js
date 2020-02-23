@@ -45,7 +45,7 @@ module.exports = env => ({
       },
       {
         test: /\.css$/,
-        exclude: [/node_modules/],
+   
         use: [
           'style-loader', // style-loader能够在需要载入的html中创建一个<style></style>标签，标签里的内容就是CSS内容。
           {

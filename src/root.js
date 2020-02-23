@@ -8,7 +8,6 @@ class Root extends React.Component {
       <div>
         <Route path="/homepage" component={Homepage} />
         <Redirect path="/" exact to="/homepage" />
-        <Redirect path="/" to="/404页面" />
       </div>
     );
   }

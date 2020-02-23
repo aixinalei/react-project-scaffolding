@@ -10,38 +10,35 @@ import PageContent from './pageContent';
 import { createStructuredSelector } from 'reselect';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getMenuCollapsed } from '../redux/selectors';
+import { getData } from '../redux/selectors';
 import actions from '../redux/actions';
 class Homepage extends React.Component {
+  constructor(props){
+    super(props)
+    // 初始化加载数据
+    props.loadData()
+  }
   render() {
     return (
-      <Layout style={{ height: '100%' }}>
-        <Sider
-          // collapsible
-          collapsed={this.props.getMenuCollapsed}
-        >
+      <Layout className="layout" style={{ height: '100%' }}>
+        <Header>
           <PageMenu />
-        </Sider>
-        <Layout>
-          <Header style={{ background: '#fff', padding: 0 }}>
-            <HeaderComponet />
-          </Header>
-          <Content>
-            <PageContent />
-          </Content>
-          <Footer>©2019 Create by DLjia</Footer>
-        </Layout>
+        </Header>
+        <Content style={{ padding: '0 50px',overflowY: 'scroll' }}>
+          <PageContent />
+        </Content>
+        <Footer style={{background:'#001529',textAlign:'center',color:'white'}}>© 2020 CenBlock Copyright  中关村科技软件股份有限公司</Footer>
       </Layout>
     );
   }
 }
 
 const mapStateToProps = createStructuredSelector({
-  getMenuCollapsed,
+  getData,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  toggleCollapsed: actions.toggleCollapsed,
+loadData:actions.loadData
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

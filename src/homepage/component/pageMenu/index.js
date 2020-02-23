@@ -18,30 +18,32 @@ class pageMenu extends React.Component {
   render() {
     return (
       <div >
-        <div style={{ height: '60px' }}>
-          <h1
-            style={{
-              fontWeight: 600,
-              fontSize: 20,
-              color: 'white',
-            }}
-          >公司Logo</h1>
-        </div>
-        <Menu
-          inlineCollapsed={this.props.getMenuCollapsed}
-          mode="inline"
-          theme="dark"
-          onSelect={(option) => { this.changeRouter(option); }}
+        <div style={{ height: '60px',
+         display: 'inline-block', 
+         float: 'left',
+         background:`url(${require('./cenblock_w.png')}) center no-repeat` , 
+         backgroundSize:'50%',
+         width: 258,
+         cursor:'pointer' }} 
+        onClick={()=>{this.props.history.replace(`/homepage/index`);}}
         >
-          <Menu.Item key="projectIntegration">
-            <Icon type="appstore" />
-            <span>项目集成</span>
-          </Menu.Item>
-          <Menu.Item key="installAndRun">
-            <Icon type="rocket" />
-            <span>安装与启动</span>
-          </Menu.Item>
-        </Menu>
+        </div>
+        <div style={{display:'inline-block',color:'white'}}>
+        <div style={{display:'inline-block',cursor:'pointer',fontSize:'18px',margin:'0 10px'}}
+         onClick={()=>{
+             this.props.history.replace(`/homepage/index`);
+          }}><Icon type="appstore" />首页</div>
+          <div style={{display:'inline-block',cursor:'pointer',fontSize:'18px',margin:'0 10px'}} onClick={()=>{
+             this.props.history.replace(`/homepage/allBlockList`);
+          }}><Icon type="appstore" />区块</div>
+          <div
+          style={{display:'inline-block',cursor:'pointer',fontSize:'18px',margin:'0 10px'}}
+           onClick={()=>{
+            this.props.history.replace(`/homepage/allTransactionList`);
+         }}
+          ><Icon type="money-collect" />交易</div>
+        </div>
+        <div style={{ height: '64px', display: 'inline-block', float: 'right' }} />
       </div >
     );
   }
