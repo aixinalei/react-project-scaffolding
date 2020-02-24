@@ -16,10 +16,10 @@ const Top = ({blockData,history}) => {
 
   useEffect(() => {
     var echarts = require('echarts');
-    // 基于准备好的dom，初始化echarts实例
-var myChart = echarts.init(document.getElementById('jysl'));
-// 绘制图表
-myChart.setOption({
+
+    const myChart = echarts.init(document.getElementById('jysl'));
+
+    myChart.setOption({
   grid:{
     x:0,
     y:0,
@@ -56,23 +56,9 @@ myChart.setOption({
   ]
 });
 
-var myChart0 = echarts.init(document.getElementById('qkzl'));
-// 绘制图表
+const myChart0 = echarts.init(document.getElementById('qkzl'));
+
 myChart0.setOption({
-//   dataZoom: [
-//     {
-//         show: true,
-//         realtime: true,
-//         start: 65,
-//         end: 85
-//     },
-//     {
-//         type: 'inside',
-//         realtime: true,
-//         start: 45,
-//         end: 85
-//     }
-// ],
 grid:{
   x:0,
   y:0,
@@ -99,11 +85,11 @@ grid:{
      }
     },
     series: [{
-      symbol:'star',//拐点样式
-      symbolSize: 0,//拐点大小
+      symbol:'star',
+      symbolSize: 0,
         type: 'line',
         data: [2, 2, 3, 4, 5, 5,5],
-        smooth: true, //添加此配置项让曲线变平滑
+        smooth: true, 
           label: {
             normal: {
               show: true,
@@ -116,7 +102,7 @@ grid:{
   
               color: {
   
-                  type: 'linear',//设置线性渐变
+                  type: 'linear',
   
                   x: 0,
   
@@ -132,11 +118,11 @@ grid:{
   
                   }, {
   
-                      offset: 1, color: '#975FE4' // 100% 处的颜色
+                      offset: 1, color: '#975FE4' 
   
                   }],
   
-                  globalCoord: false // 缺省为 false
+                  globalCoord: false 
                   
               },
     },
