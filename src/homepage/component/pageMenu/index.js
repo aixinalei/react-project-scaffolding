@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getMenuCollapsed } from '../../redux/selectors';
 // 使用withRouter 为组件提供history location match staticContext属性
 import { withRouter } from 'react-router-dom';
-
+import css from './index.less';
 class pageMenu extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,7 @@ class pageMenu extends React.Component {
   }
   render() {
     return (
-      <div >
+      <div className={css.mainClass}>
         <div style={{ height: '60px',
          display: 'inline-block', 
          float: 'left',
@@ -29,15 +29,15 @@ class pageMenu extends React.Component {
         >
         </div>
         <div style={{display:'inline-block',color:'white'}}>
-        <div style={{display:'inline-block',cursor:'pointer',fontSize:'18px',margin:'0 10px'}}
+        <div className={css.menuItem} style={{display:'inline-block',cursor:'pointer',fontSize:'18px',margin:'0 10px 0 0',padding:'0 10px'}}
          onClick={()=>{
              this.props.history.replace(`/homepage/index`);
-          }}><Icon type="appstore" />首页</div>
-          <div style={{display:'inline-block',cursor:'pointer',fontSize:'18px',margin:'0 10px'}} onClick={()=>{
+          }}><Icon type="bank" />首页</div>
+          <div className={css.menuItem} style={{display:'inline-block',cursor:'pointer',fontSize:'18px',margin:'0 10px',padding:'0 10px'}} onClick={()=>{
              this.props.history.replace(`/homepage/allBlockList`);
           }}><Icon type="appstore" />区块</div>
-          <div
-          style={{display:'inline-block',cursor:'pointer',fontSize:'18px',margin:'0 10px'}}
+          <div className={css.menuItem}
+          style={{display:'inline-block',cursor:'pointer',fontSize:'18px',margin:'0 10px',padding:'0 10px'}}
            onClick={()=>{
             this.props.history.replace(`/homepage/allTransactionList`);
          }}

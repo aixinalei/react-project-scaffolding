@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { getData } from '../../../redux/selectors';
 import moment from 'moment';
 moment.locale('zh-cn');
-import JSONTree from 'react-json-tree'
+import ReactJson from 'react-json-view'
 import { withRouter } from 'react-router-dom';
 
 class TransactionDetail extends React.Component {
@@ -151,10 +151,9 @@ class TransactionDetail extends React.Component {
     lineHeight: 'normal'}}>{data.json}</div>
         </div>
         {
-            showJSON &&   <div>
+          showJSON &&  <div>
           <div style={{display:'inline-block',width:'150px'}}>上链数据（格式化）</div>
-          <JSONTree data={showJSON} />
-
+          <ReactJson src={showJSON} />
         </div>  
       }
         </Card>
