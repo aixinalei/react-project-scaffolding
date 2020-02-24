@@ -48,6 +48,7 @@
     "antd": "^3.16.3",
     "axios": "^0.19.0",
     "babel-plugin-import": "^1.11.0",
+    "echarts": "^4.6.0",
     "humps": "^2.0.1",
     "immer": "^2.1.5",
     "immutable": "^4.0.0-rc.12",
