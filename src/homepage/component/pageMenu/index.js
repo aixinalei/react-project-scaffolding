@@ -41,6 +41,10 @@ class pageMenu extends React.Component {
             <Icon type="rocket" />
             <span>安装与启动</span>
           </Menu.Item>
+          <Menu.Item key="testReactState">
+            <Icon type="rocket" />
+            <span>安装与启动</span>
+          </Menu.Item>
         </Menu>
       </div >
     );

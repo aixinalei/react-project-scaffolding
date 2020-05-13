@@ -1,0 +1,35 @@
+for(let i=0;i<10;i+=1){
+    console.log(i)
+}
+for(let i=0;i<10;i+=1){
+
+    setTimeout(()=>{
+        console.log(i)
+    },10)
+}
+for(var i=0;i<10;i+=1){
+    setTimeout(()=>{
+        console.log(i)
+    },10)
+}
+var c = 0;
+function setC(newC){
+
+    c = newC
+}
+function b(){
+
+ (function dd(i) {
+         setTimeout(function() {
+           
+           setC(2)
+             console.log(i)
+         }, 0);
+         setTimeout(function() {
+
+             setC(3)
+             console.log(i)
+         }, 0);
+     })(c);
+}
+b()
