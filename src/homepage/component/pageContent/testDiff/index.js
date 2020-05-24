@@ -15,7 +15,7 @@ class TestDiff extends React.Component {
                 <button onClick={()=>{this.setState({
                     refresh:Math.random()
                 })}}>重新渲染组件</button>
-                <Child1 key={"1"}/>
+                <Child1 key="1"/>
                 <Child2 key={
                     Math.random()
                 }/>
