@@ -49,6 +49,10 @@ class pageMenu extends React.Component {
             <Icon type="rocket" />
             <span>reactDiff更新过程demo</span>
           </Menu.Item>
+          <Menu.Item key="testDiffList">
+            <Icon type="rocket" />
+            <span>reactDiff更新过程demo2</span>
+          </Menu.Item>
         </Menu>
       </div >
     );

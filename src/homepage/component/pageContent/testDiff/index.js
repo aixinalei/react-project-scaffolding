@@ -1,6 +1,7 @@
 import React from 'react';
 import Child1 from './child1';
 import Child2 from './child2';
+import Child3 from './child3';
 class TestDiff extends React.Component {
     constructor(props) {
         super(props)
@@ -19,6 +20,7 @@ class TestDiff extends React.Component {
                 <Child2 key={
                     Math.random()
                 }/>
+                <Child3 />
             </div>
         );
     }
