@@ -43,7 +43,11 @@ class pageMenu extends React.Component {
           </Menu.Item>
           <Menu.Item key="testReactState">
             <Icon type="rocket" />
-            <span>安装与启动</span>
+            <span>reactsetState更新过程demo</span>
+          </Menu.Item>
+          <Menu.Item key="testDiff">
+            <Icon type="rocket" />
+            <span>reactDiff更新过程demo</span>
           </Menu.Item>
         </Menu>
       </div >
