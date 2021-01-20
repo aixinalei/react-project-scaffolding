@@ -50,7 +50,7 @@
     "babel-plugin-import": "^1.11.0",
     "humps": "^2.0.1",
     "mockjs": "^1.0.1-beta3",
-    "immer": "^2.1.5",
+    "immer": "^8.0.1",
     "prop-types": "^15.7.2",
     "randomatic": "^3.1.1",
     "react": "^16.7.0",
