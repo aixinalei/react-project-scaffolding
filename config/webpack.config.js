@@ -1,15 +1,15 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HappyPack = require('happypack');
+// const HappyPack = require('happypack');
 const os = require('os');
-const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+// const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = env => ({
   // webpack4中 entry和output可以没有
-  entry: './src/index.js',
+  entry: '../src/entry/index.js',
   output: {
     filename: '[name].[chunkhash].js', // 打包出来的文件最好用文件的hash值来命名 防止更新后浏览器有缓存
     chunkFilename: '[name]-[chunkhash:8].bundle.js',
@@ -24,24 +24,31 @@ module.exports = env => ({
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: env && env.WITH_ESLINT ? [{
-          loader: 'HappyPack/loader?id=jsHappy', // 使用happypack 加快打包速度
-        }, {
-          loader: 'eslint-loader',
-          options: { fix: true },
-        }] : [
-          {
-            loader: 'HappyPack/loader?id=jsHappy',
-          },
-        ],
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-          },
-        ],
+        use: [{
+          loader: 'babel-loader', // 使用happypack 加快打包速度
+          options: {
+            "presets": [
+              "@babel/preset-env",
+              "@babel/preset-react" 
+            ],
+            "plugins": [
+                "@babel/plugin-syntax-dynamic-import",
+                "@babel/plugin-proposal-class-properties",// 类组件中使用箭头函数
+                [
+                    "import",
+                    {
+                        "libraryName": "antd",
+                        "style": true
+                    }
+                ]
+            ]
+          }
+        }, 
+        // {
+        //   loader: 'eslint-loader',
+        //   options: { fix: true },
+        // }
+      ],
       },
       {
         test: /\.css$/,
@@ -65,7 +72,6 @@ module.exports = env => ({
           loader: 'css-loader',
           options: {
             modules: true,
-            context: __dirname,   // 不同目录下相同名称的less文件生成不同的css类名
           },
         }, {
           loader: 'less-loader',
@@ -81,7 +87,9 @@ module.exports = env => ({
         }, {
           loader: 'less-loader',
           options: {
-            javascriptEnabled: true, // 主要为了解决antd使用less打包样式less报错的问题
+            lessOptions: {
+                javascriptEnabled: true, // 主要为了解决antd使用less打包样式less报错的问题
+            }
           },
         }],
       },
@@ -104,21 +112,10 @@ module.exports = env => ({
       filename: '[name].css',
     }),
     // 编译输出文件前，删除旧文件，当利用文件hash值输出时，可以利用该插件删除原有文件
-    new CleanWebpackPlugin(['dist']),
+    // new CleanWebpackPlugin(['dist']),
     // 重构入口html，动态添加<link>和<script>，在以hash命名的文件上非常有用，因为每次编译都会改变<link>和<script>标签文件名字
     new HtmlWebPackPlugin({
-      template: './index.html',
-    }),
-    new HappyPack({
-      id: 'jsHappy',
-      verbose: false,
-      threadPool: happyThreadPool,
-      loaders: [{
-        path: 'babel-loader', // 使用babel将es6转换成es5
-        query: {
-          cacheDirectory: './node_modules/.webpack_cache',
-        },
-      }],
+      template: '../src/entry/index.html',
     }),
   ],
   externals: {

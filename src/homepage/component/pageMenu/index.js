@@ -1,12 +1,8 @@
 import React from 'react';
-import { Menu, Icon } from 'antd';
-import { createStructuredSelector } from 'reselect';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { getMenuCollapsed } from '../../redux/selectors';
+import { Menu, Icon, Layout } from 'antd';
 // 使用withRouter 为组件提供history location match staticContext属性
 import { withRouter } from 'react-router-dom';
-
+const { Sider } = Layout;
 class pageMenu extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +13,7 @@ class pageMenu extends React.Component {
   }
   render() {
     return (
-      <div >
+      <Sider >
         <div style={{ height: '60px' }}>
           <h1
             style={{
@@ -54,16 +50,9 @@ class pageMenu extends React.Component {
             <span>reactDiff更新过程demo2</span>
           </Menu.Item>
         </Menu>
-      </div >
+      </Sider >
     );
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  getMenuCollapsed,
-});
-
-const mapDispatchToProps = dispatch => bindActionCreators({
-
-}, dispatch);
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(pageMenu));
+export default withRouter(pageMenu);
