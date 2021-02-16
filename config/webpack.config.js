@@ -52,14 +52,32 @@ module.exports = env => ({
       },
       {
         test: /(\.less|\.css)$/,
+        exclude: [/node_modules/], // 只对自己编辑的文件开启modules
         use: [
           'style-loader', // style-loader能够在需要载入的html中创建一个<style></style>标签，标签里的内容就是CSS内容。
           {
             loader: 'css-loader', // css-loader是允许在js中import一个css文件，会将css文件当成一个模块引入到js文件中。
             options: {
-              esModule: false,
-              modules: false,
+              modules: true,
             }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              }
+            }
+          }
+        ],
+      },
+      {
+        test: /(\.less|\.css)$/,
+        include: [/node_modules|antd/],
+        use: [
+          'style-loader', // style-loader能够在需要载入的html中创建一个<style></style>标签，标签里的内容就是CSS内容。
+          {
+            loader: 'css-loader', // css-loader是允许在js中import一个css文件，会将css文件当成一个模块引入到js文件中。
           },
           {
             loader: 'less-loader',
