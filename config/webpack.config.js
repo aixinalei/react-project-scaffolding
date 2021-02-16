@@ -43,55 +43,33 @@ module.exports = env => ({
                 ]
             ]
           }
-        }, 
-        // {
-        //   loader: 'eslint-loader',
-        //   options: { fix: true },
-        // }
+        },
+        {
+          loader: 'eslint-loader',
+          options: { fix: true },
+        }
       ],
       },
       {
-        test: /\.css$/,
-        exclude: [/node_modules/],
+        test: /(\.less|\.css)$/,
         use: [
           'style-loader', // style-loader能够在需要载入的html中创建一个<style></style>标签，标签里的内容就是CSS内容。
           {
             loader: 'css-loader', // css-loader是允许在js中import一个css文件，会将css文件当成一个模块引入到js文件中。
             options: {
-              modules: true, // 启用 css-modules模式 简单来说在样式表文件中可以使用:local(.className)、：global（.className）的方式来标明该样式的作用域
-            },
-          },
-        ],
-      },
-      {
-        test: /\.less$/,
-        exclude: [/node_modules/], // 只对自己编辑的文件开启modules
-        use: [{
-          loader: MiniCssExtractPlugin.loader, // 替代 style-loader 将 css从文件中抽出成一个单独的文件
-        }, {
-          loader: 'css-loader',
-          options: {
-            modules: true,
-          },
-        }, {
-          loader: 'less-loader',
-        }],
-      },
-      {
-        test: /\.less$/,
-        include: [/node_modules|antd/], // 单独为antd写的lessloader 因为antd不支持css-loader开启modules模式
-        use: [{
-          loader: 'style-loader',
-        }, {
-          loader: 'css-loader',
-        }, {
-          loader: 'less-loader',
-          options: {
-            lessOptions: {
-                javascriptEnabled: true, // 主要为了解决antd使用less打包样式less报错的问题
+              esModule: false,
+              modules: false,
             }
           },
-        }],
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              }
+            }
+          }
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
